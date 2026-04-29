@@ -1,4 +1,4 @@
-package dev.PLJrInterprise.CadastroDeNinjas;
+package dev.PLJrInterprise.CadastroDeNinjas.Ninjas;
 
 import org.springframework.web.bind.annotation.*;
 

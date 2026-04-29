@@ -1,18 +1,21 @@
-package dev.PLJrInterprise.CadastroDeNinjas;
+package dev.PLJrInterprise.CadastroDeNinjas.Ninjas;
+import dev.PLJrInterprise.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
+import java.util.List;
 
 // O Entity transforma uma classe em uma entidade do DB
 @Entity
-@Table(name = "tb_cadastro") // É uma boa prática escrever tudo em minúsculo e separado pelo underline, juntamente do tb, que representa "table"
+@Table(name = "cadastro") // É uma boa prática escrever tudo em minúsculo e separado pelo underline, juntamente do tb, que representa "table"
 public class NinjaModel { // Numa aplicação Spring, no prefixo eu sempre vou pôr o nome da classe que eu estou trabalhando, e no sufixo, o que eu vou trabalhar
     // Como nesse caso vou trabalhar com o modelo da classe, coloquei a palavrinha "model" como sufixo
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Serve para gerar um numero para Id
-    Long id; // O id nós só declaramos, mas quem vai fazer o trabalho com ele é o próprio Java, não eu
-    String nome;
-    String email;
-    Integer idade;
+    private Long id; // O id nós só declaramos, mas quem vai fazer o trabalho com ele é o próprio Java, não eu
+    private String nome;
+    private String email;
+    private Integer idade;
+    private List<MissoesModel> missoes;
 
     // No args constructor
     public NinjaModel() {
