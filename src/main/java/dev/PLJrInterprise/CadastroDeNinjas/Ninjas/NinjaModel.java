@@ -12,10 +12,16 @@ public class NinjaModel { // Numa aplicação Spring, no prefixo eu sempre vou p
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Serve para gerar um numero para Id
     private Long id; // O id nós só declaramos, mas quem vai fazer o trabalho com ele é o próprio Java, não eu
+
     private String nome;
+
     private String email;
+
     private Integer idade;
-    private List<MissoesModel> missoes;
+
+    // @ManyToOne ⇾ um ninja tem uma única missão
+    @ManyToOne
+    private MissoesModel missoes;
 
     // No args constructor
     public NinjaModel() {
