@@ -12,4 +12,9 @@ public class NinjaController {
         return "Essa é minha primeira mensagem nessa rota";
     }
 
+    @GetMapping("/ninjas")
+    public String telaNinjas() {
+        return "Tela da rota de ninjas";
+    }
+
 }
