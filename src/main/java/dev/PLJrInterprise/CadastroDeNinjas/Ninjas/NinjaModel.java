@@ -19,8 +19,9 @@ public class NinjaModel { // Numa aplicação Spring, no prefixo eu sempre vou p
 
     private Integer idade;
 
-    // @ManyToOne ⇾ um ninja tem uma única missão
+    // @ManyToOne ⇾ Um ninja tem uma única missão
     @ManyToOne
+    @JoinColumn(name = "missoes_id") // Foreigner Key -> Chave estrangeira
     private MissoesModel missoes;
 
     // No args constructor

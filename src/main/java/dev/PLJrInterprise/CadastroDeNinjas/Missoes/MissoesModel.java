@@ -3,6 +3,8 @@ package dev.PLJrInterprise.CadastroDeNinjas.Missoes;
 import dev.PLJrInterprise.CadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "/missoes")
 public class MissoesModel {
@@ -20,21 +22,18 @@ public class MissoesModel {
     private String dificuldade;
 
     // @OneToMany ⇾ Uma missão vai ter vários ninjas
-    @OneToMany
-    private NinjaModel ninja; // Uma missão pode ter vários ninjas fazendo essa missão. Ou seja, uma missão pode receber vários ninjas, mas um ninja só pode receber uma missão
-
-
+    @OneToMany (mappedBy = "missoes") // Aqui, eu mapeei ambas das tabelas por meio da chave estrangeira
+    private List<NinjaModel> ninja; // Uma missão pode ter vários ninjas fazendo essa missão. Ou seja, uma missão pode receber vários ninjas, mas um ninja só pode receber uma missão
 
     // No args constructor
     public MissoesModel() {
     }
 
     // All args constructor
-    public MissoesModel(Long id, String nome, String dificuldade, NinjaModel ninja) {
+    public MissoesModel(Long id, String nome, String dificuldade) {
         this.id = id;
         this.nome = nome;
         this.dificuldade = dificuldade;
-        this.ninja = ninja;
     }
 
     public Long getId() {
@@ -61,11 +60,4 @@ public class MissoesModel {
         this.dificuldade = dificuldade;
     }
 
-    public NinjaModel getNinja() {
-        return ninja;
-    }
-
-    public void setNinja(NinjaModel ninja) {
-        this.ninja = ninja;
-    }
 }
