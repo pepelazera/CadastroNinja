@@ -2,11 +2,17 @@ package dev.PLJrInterprise.CadastroDeNinjas.Missoes;
 
 import dev.PLJrInterprise.CadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import java.util.List;
 
 @Entity
 @Table(name = "/missoes")
+@NoArgsConstructor // Cria um construtor vazio sem eu ver. Ele faz essa construção automaticamente
+@AllArgsConstructor // Mesma coisa só que para um construtor com todos os argumentos
+@Data // Cria todos os Getters e Setters automaticamente também
 public class MissoesModel {
 
     /*
@@ -24,40 +30,5 @@ public class MissoesModel {
     // @OneToMany ⇾ Uma missão vai ter vários ninjas
     @OneToMany (mappedBy = "missoes") // Aqui, eu mapeei ambas das tabelas por meio da chave estrangeira
     private List<NinjaModel> ninja; // Uma missão pode ter vários ninjas fazendo essa missão. Ou seja, uma missão pode receber vários ninjas, mas um ninja só pode receber uma missão
-
-    // No args constructor
-    public MissoesModel() {
-    }
-
-    // All args constructor
-    public MissoesModel(Long id, String nome, String dificuldade) {
-        this.id = id;
-        this.nome = nome;
-        this.dificuldade = dificuldade;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDificuldade() {
-        return dificuldade;
-    }
-
-    public void setDificuldade(String dificuldade) {
-        this.dificuldade = dificuldade;
-    }
 
 }
