@@ -1,12 +1,6 @@
 package dev.PLJrInterprise.CadastroDeNinjas.Ninjas;
 import dev.PLJrInterprise.CadastroDeNinjas.Missoes.MissoesModel;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +21,7 @@ public class NinjaModel { // Numa aplicação Spring, no prefixo eu sempre vou p
 
     private String nome;
 
+    @Column(unique = true) // Isso quer dizer que essa coluna é única, que ninguém pode ter outro email igual
     private String email;
 
     private Integer idade;
