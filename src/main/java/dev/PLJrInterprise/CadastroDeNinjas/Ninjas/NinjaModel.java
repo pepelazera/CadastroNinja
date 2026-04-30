@@ -19,12 +19,17 @@ public class NinjaModel { // Numa aplicação Spring, no prefixo eu sempre vou p
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Serve para gerar um numero para Id
     private Long id; // O id nós só declaramos, mas quem vai fazer o trabalho com ele é o próprio Java, não eu
 
+    @Column(name = "nome") // Adiciona uma coluna de nome para os ninjas
     private String nome;
 
     @Column(unique = true) // Isso quer dizer que essa coluna é única, que ninguém pode ter outro email igual
     private String email;
 
+    @Column(name = "img_url")
+    private String imgUrl;
+
     private Integer idade;
+
 
     // @ManyToOne ⇾ Um ninja tem uma única missão
     @ManyToOne
