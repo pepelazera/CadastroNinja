@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "/missoes")
+@Table(name = "missoes")
 @NoArgsConstructor // Cria um construtor vazio sem eu ver. Ele faz essa construção automaticamente
 @AllArgsConstructor // Mesma coisa só que para um construtor com todos os argumentos
 @Data // Cria todos os Getters e Setters automaticamente também
