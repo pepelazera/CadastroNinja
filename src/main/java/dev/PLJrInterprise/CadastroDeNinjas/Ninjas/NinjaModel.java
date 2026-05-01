@@ -26,10 +26,9 @@ public class NinjaModel { // Numa aplicação Spring, no prefixo eu sempre vou p
     private String email;
 
     @Column(name = "img_url")
-    private String imgUrl;
+    private String imgURL;
 
     private Integer idade;
-
 
     // @ManyToOne ⇾ Um ninja tem uma única missão
     @ManyToOne
