@@ -1,4 +1,5 @@
 package dev.PLJrInterprise.CadastroDeNinjas.Ninjas;
+
 import dev.PLJrInterprise.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 // O Entity transforma uma classe em uma entidade do DB
 @Entity
-@Table(name = "cadastro") // É uma boa prática escrever tudo em minúsculo e separado pelo underline, juntamente do tb, que representa "table"
+@Table(name = "tb_cadastro") // É uma boa prática escrever tudo em minúsculo e separado pelo underline, juntamente do tb, que representa "table"
 @NoArgsConstructor
 @AllArgsConstructor // Se eu passar um novo parametro, ele adiciona esse novo parametro automaticamente
 @Data
@@ -33,6 +34,6 @@ public class NinjaModel { // Numa aplicação Spring, no prefixo eu sempre vou p
     // @ManyToOne ⇾ Um ninja tem uma única missão
     @ManyToOne
     @JoinColumn(name = "missoes_id") // Foreigner Key -> Chave estrangeira
-    private MissoesModel missoes;
+    private MissoesModel tb_missoes;
 
 }

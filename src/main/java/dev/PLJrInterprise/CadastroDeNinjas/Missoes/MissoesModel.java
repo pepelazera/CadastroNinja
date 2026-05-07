@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "missoes")
+@Table(name = "tb_missoes")
 @NoArgsConstructor // Cria um construtor vazio sem eu ver. Ele faz essa construção automaticamente
 @AllArgsConstructor // Mesma coisa só que para um construtor com todos os argumentos
 @Data // Cria todos os Getters e Setters automaticamente também
@@ -28,7 +28,7 @@ public class MissoesModel {
     private String dificuldade;
 
     // @OneToMany ⇾ Uma missão vai ter vários ninjas
-    @OneToMany (mappedBy = "missoes") // Aqui, eu mapeei ambas das tabelas por meio da chave estrangeira
-    private List<NinjaModel> cadastro; // Uma missão pode ter vários ninjas fazendo essa missão. Ou seja, uma missão pode receber vários ninjas, mas um ninja só pode receber uma missão
+    @OneToMany (mappedBy = "tb_missoes") // Aqui, eu mapeei ambas das tabelas por meio da chave estrangeira
+    private List<NinjaModel> tb_cadastro; // Uma missão pode ter vários ninjas fazendo essa missão. Ou seja, uma missão pode receber vários ninjas, mas um ninja só pode receber uma missão
 
 }
