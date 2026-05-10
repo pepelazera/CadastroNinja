@@ -15,7 +15,7 @@ public class NinjaController {
     // Para criar esse CRUD, eu preciso criar os meus endpoints com base na sigla, que eh o que fiz logo abaixo
 
     // Adicionar ninja (CREATE)
-    @PostMapping("/adicionar") // Usado quando queremos criar ou procurar algo. Aqui nos estou criando um novo ninja
+    @PostMapping("/criar") // Usado quando queremos criar ou procurar algo. Aqui nos estou criando um novo ninja
     public String criarNinja() {
         return "Ninja criado";
     }
