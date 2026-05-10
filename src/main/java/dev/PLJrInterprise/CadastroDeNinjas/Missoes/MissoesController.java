@@ -12,7 +12,6 @@ public class MissoesController {
     // Vai ser aqui que eu vou criar a rota para o meu servidor
     // Eh a camada mais proxima do usuario
 
-
     // GET -- Mandar uma requisicao para mostrar as missoes
     @GetMapping("/listar") // Entrego pro usuario alguma coisa
     public String listarMissoes() {
