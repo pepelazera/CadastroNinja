@@ -1,15 +1,17 @@
 package dev.PLJrInterprise.CadastroDeNinjas.Ninjas;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/ninjas")
 public class NinjaController {
 
-    @GetMapping("/boasvindas")
-    public String boasVindas() {
-        return "Essa é minha primeira mensagem nessa rota";
-    }
+    @Autowired
+    private NinjaService ninjaService;
+
 
     // Esses topicos formam o meu CRUD
     // Para criar esse CRUD, eu preciso criar os meus endpoints com base na sigla, que eh o que fiz logo abaixo
@@ -26,7 +28,12 @@ public class NinjaController {
         return "Procurando ninja por Id...";
     }
 
-    // Mostrar todos os Ninjas (READ)
+    @GetMapping("/listar")
+    public List<NinjaModel> listarNinjas() {
+        return ninjaService.listarNinjas();
+    }
+
+    // Mostrar todos os Ninjas por Id (READ)
     @GetMapping("/listarId")
     public String mostrarTodosOsNinjas() {
         return "Mostrar todos os ninjas";
