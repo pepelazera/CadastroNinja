@@ -1,5 +1,6 @@
 package dev.PLJrInterprise.CadastroDeNinjas.Ninjas;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.PLJrInterprise.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,6 +35,7 @@ public class NinjaModel { // Numa aplicação Spring, no prefixo eu sempre vou p
     // @ManyToOne ⇾ Um ninja tem uma única missão
     @ManyToOne
     @JoinColumn(name = "missoes_id") // Foreigner Key -> Chave estrangeira
+    @JsonIgnore
     private MissoesModel tb_missoes;
 
 }
