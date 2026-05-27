@@ -18,14 +18,8 @@ public class NinjaController {
 
     // Adicionar ninja (CREATE)
     @PostMapping("/criar") // Usado quando queremos criar ou procurar algo. Aqui nos estou criando um novo ninja
-    public String criarNinja() {
-        return "Ninja criado";
-    }
-
-    // Procurar ninja por ID (CREATE)
-    @PostMapping("/adicionarId") // Usado quando queremos criar ou procurar algo. Aqui nos estou procurando um ninja por Id
-    public String ProcurarNinjaPorId() {
-        return "Procurando ninja por Id...";
+    public NinjaModel criarNinja(@RequestBody NinjaModel ninjaModel) { // Preciso que ele mande no corpo da minha requisicao um json igual ao que eu tenho no localhost
+        return ninjaService.criarNinja(ninjaModel); // Pega o metodo criado no NinjaService e usa ele nos parametros do ninjaModel
     }
 
     @GetMapping("/listar")
