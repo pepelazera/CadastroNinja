@@ -29,8 +29,8 @@ public class MissoesModel {
     private String dificuldade;
 
     // @OneToMany ⇾ Uma missão vai ter vários ninjas
-    @OneToMany (mappedBy = "tb_missoes") // Aqui, eu mapeei ambas das tabelas por meio da chave estrangeira
+    @OneToMany (mappedBy = "missoes") // Aqui, eu mapeei ambas das tabelas por meio da chave estrangeira
     @JsonIgnore
-    private List<NinjaModel> tb_cadastro; // Uma missão pode ter vários ninjas fazendo essa missão. Ou seja, uma missão pode receber vários ninjas, mas um ninja só pode receber uma missão
+    private List<NinjaModel> cadastro; // Uma missão pode ter vários ninjas fazendo essa missão. Ou seja, uma missão pode receber vários ninjas, mas um ninja só pode receber uma missão
 
 }

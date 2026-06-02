@@ -12,14 +12,13 @@ public class NinjaController {
     @Autowired
     private NinjaService ninjaService;
 
-
     // Esses topicos formam o meu CRUD
     // Para criar esse CRUD, eu preciso criar os meus endpoints com base na sigla, que eh o que fiz logo abaixo
 
     // Adicionar ninja (CREATE)
     @PostMapping("/criar") // Usado quando queremos criar ou procurar algo. Aqui nos estou criando um novo ninja
-    public NinjaModel criarNinja(@RequestBody NinjaModel ninjaModel) { // Preciso que ele mande no corpo da minha requisicao um json igual ao que eu tenho no localhost
-        return ninjaService.criarNinja(ninjaModel); // Pega o metodo criado no NinjaService e usa ele nos parametros do ninjaModel
+    public NinjaDTO criarNinja(@RequestBody NinjaDTO ninjaDTO) { // Preciso que ele mande no corpo da minha requisicao um json igual ao que eu tenho no localhost
+        return ninjaService.criarNinja(ninjaDTO); // Pega o metodo criado no NinjaService e usa ele nos parametros do ninjaModel
     }
 
     @GetMapping("/listar")

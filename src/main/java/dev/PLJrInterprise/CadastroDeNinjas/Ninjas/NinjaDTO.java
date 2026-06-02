@@ -1,18 +1,16 @@
 package dev.PLJrInterprise.CadastroDeNinjas.Ninjas;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.PLJrInterprise.CadastroDeNinjas.Missoes.MissoesModel;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class NinjaDTO {
 
-    // Agora, quem vai conversar com o service vai ser o DTO
+    // Data Transfer Object
 
     private Long id;
 
@@ -20,11 +18,12 @@ public class NinjaDTO {
 
     private String email;
 
-    private String imgURL;
+    private String img_Url;
 
     private Integer idade;
 
     private String rank;
 
-    private MissoesModel tb_missoes;
+    private MissoesModel missoes;
+
 }

@@ -9,8 +9,13 @@ import java.util.Optional;
 @Service
 public class NinjaService {
 
-    @Autowired
-    private NinjaRepository ninjaRepository;
+    private final NinjaRepository ninjaRepository;
+    private final NinjaMapper ninjaMapper;
+
+    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
+        this.ninjaRepository = ninjaRepository;
+        this.ninjaMapper = ninjaMapper;
+    }
 
     // Lista normalmente
     public List<NinjaModel> listarNinjas() {
@@ -24,8 +29,10 @@ public class NinjaService {
     }
 
     // Criar um novo ninja usando o service
-    public  NinjaModel criarNinja(NinjaModel ninjaModel) {
-        return ninjaRepository.save(ninjaModel); // Salva os parametros da classe ninjaModel
+    public  NinjaDTO criarNinja(NinjaDTO ninjaDTO) {
+        NinjaModel ninja = ninjaMapper.map(ninjaDTO);
+        ninja = ninjaRepository.save(ninja);
+        return ninjaMapper.map(ninja);
     }
 
     // Deletar o ninja - Tem que ser um metodo void
