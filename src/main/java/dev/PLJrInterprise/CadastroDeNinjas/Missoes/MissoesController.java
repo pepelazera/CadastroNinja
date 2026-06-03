@@ -1,6 +1,5 @@
 package dev.PLJrInterprise.CadastroDeNinjas.Missoes;
 
-import dev.PLJrInterprise.CadastroDeNinjas.Ninjas.NinjaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,25 +20,25 @@ public class MissoesController {
 
     // POST -- Mandar uma requisicao para criar as missoes
     @PostMapping("/criar") // Usuario vai mandar pra mim
-    public MissoesModel criarMissao(@RequestBody MissoesModel missoesModel)  { // Sem essa annotation, os parametros que eu passar no postman nao ficarao salvos
-        return missoesService.adicionarMissao(missoesModel);
+    public MissoesDTO criarMissao(@RequestBody MissoesDTO missoesDTO)  { // Sem essa annotation, os parametros que eu passar no postman nao ficarao salvos
+        return missoesService.criarMissao(missoesDTO);
     }
 
     // GET -- Mandar uma requisicao para mostrar as missoes
     @GetMapping("/listar") // Entrego pro usuario alguma coisa
-    public List<MissoesModel> listarMissoes() {
+    public List<MissoesDTO> listarMissoes() {
         return missoesService.listarMissoes();
     }
 
     @GetMapping("/listar/{id}")
-    public MissoesModel listarMissoesPorId(@PathVariable Long id){
+    public MissoesDTO listarMissoesPorId(@PathVariable Long id){
         return missoesService.listarMissoesPorId(id);
     }
 
     // PUT -- Mandar uma requisicao para alterar as missoes
     @PutMapping("/atualizar/{id}")
-    public MissoesModel atualizarMissoesPorId(@PathVariable Long id, @RequestBody MissoesModel missoesModelAtualizado) {
-        return missoesService.atualizarMissoesPorId(id, missoesModelAtualizado);
+    public MissoesDTO atualizarMissoesPorId(@PathVariable Long id, @RequestBody MissoesDTO missoesDTOAtualizado) {
+        return missoesService.atualizarMissoesPorId(id, missoesDTOAtualizado);
     }
 
     // DELETE -- Mandar uma requisicao para deletar as missoes

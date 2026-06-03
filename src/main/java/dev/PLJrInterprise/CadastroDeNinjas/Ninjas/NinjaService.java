@@ -10,13 +10,11 @@ import java.util.stream.Collectors;
 @Service
 public class NinjaService {
 
-    private final NinjaRepository ninjaRepository;
-    private final NinjaMapper ninjaMapper;
+    @Autowired
+    private NinjaRepository ninjaRepository;
 
-    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
-        this.ninjaRepository = ninjaRepository;
-        this.ninjaMapper = ninjaMapper;
-    }
+    @Autowired
+    private NinjaMapper ninjaMapper;
 
     // Lista normalmente
     public List<NinjaDTO> listarNinjas() {
@@ -29,6 +27,7 @@ public class NinjaService {
     // Lista por id
     public NinjaDTO listarNinjasPorId(Long id) {
        Optional<NinjaModel> ninjasPorId = ninjaRepository.findById(id);
+
        return ninjasPorId.stream()
                .map(ninjaMapper::map)
                .findAny().orElse(null);
@@ -38,6 +37,7 @@ public class NinjaService {
     public  NinjaDTO criarNinja(NinjaDTO ninjaDTO) {
         NinjaModel ninja = ninjaMapper.map(ninjaDTO);
         ninja = ninjaRepository.save(ninja);
+
         return ninjaMapper.map(ninja);
     }
 
