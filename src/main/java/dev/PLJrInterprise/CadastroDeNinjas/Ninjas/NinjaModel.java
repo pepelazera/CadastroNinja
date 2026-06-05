@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 // O Entity transforma uma classe em uma entidade do DB
 @Entity
 @Table(name = "tb_cadastro") // É uma boa prática escrever tudo em minúsculo e separado pelo underline, juntamente do tb, que representa "table"
+@Data
 @NoArgsConstructor
 @AllArgsConstructor // Se eu passar um novo parametro, ele adiciona esse novo parametro automaticamente
-@Data
 public class NinjaModel { // Numa aplicação Spring, no prefixo eu sempre vou pôr o nome da classe que eu estou trabalhando, e no sufixo, o que eu vou trabalhar
+
     // Como nesse caso vou trabalhar com o modelo da classe, coloquei a palavrinha "model" como sufixo
 
     @Id
@@ -30,12 +31,16 @@ public class NinjaModel { // Numa aplicação Spring, no prefixo eu sempre vou p
     @Column(name = "img_url")
     private String imgURL;
 
+    @Column(name = "idade")
     private Integer idade;
+
+    @Column(name = "rank")
+    private String rank;
 
     // @ManyToOne ⇾ Um ninja tem uma única missão
     @ManyToOne
     @JoinColumn(name = "missoes_id") // Foreigner Key -> Chave estrangeira
     @JsonIgnore
-    private MissoesModel tb_missoes;
+    private MissoesModel missoes;
 
 }

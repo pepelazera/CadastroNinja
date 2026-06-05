@@ -12,24 +12,23 @@ public class NinjaController {
     @Autowired
     private NinjaService ninjaService;
 
-
     // Esses topicos formam o meu CRUD
     // Para criar esse CRUD, eu preciso criar os meus endpoints com base na sigla, que eh o que fiz logo abaixo
 
     // Adicionar ninja (CREATE)
     @PostMapping("/criar") // Usado quando queremos criar ou procurar algo. Aqui nos estou criando um novo ninja
-    public NinjaModel criarNinja(@RequestBody NinjaModel ninjaModel) { // Preciso que ele mande no corpo da minha requisicao um json igual ao que eu tenho no localhost
-        return ninjaService.criarNinja(ninjaModel); // Pega o metodo criado no NinjaService e usa ele nos parametros do ninjaModel
+    public NinjaDTO criarNinja(@RequestBody NinjaDTO ninjaDTO) { // Preciso que ele mande no corpo da minha requisicao um json igual ao que eu tenho no localhost
+        return ninjaService.criarNinja(ninjaDTO); // Pega o metodo criado no NinjaService e usa ele nos parametros do ninjaModel
     }
 
     @GetMapping("/listar")
-    public List<NinjaModel> listarNinjas() {
+    public List<NinjaDTO> listarNinjas() {
         return ninjaService.listarNinjas();
     }
 
     // Mostrar todos os Ninjas por Id (READ)
     @GetMapping("/listar/{id}")
-    public NinjaModel listarNinjasPorId(@PathVariable Long id) {
+    public NinjaDTO listarNinjasPorId(@PathVariable Long id) {
         return ninjaService.listarNinjasPorId(id);
     }
 
@@ -41,8 +40,8 @@ public class NinjaController {
 
     // Alterar dados dos Ninjas (UPDATE)
     @PutMapping("/atualizar/{id}") // Utilizado para atualizar uma informacao
-    public NinjaModel atualizarNinjaPorId(@PathVariable Long id, @RequestBody NinjaModel ninjaModelAtualizado) { // Ponho aqui duas variaveis no meu metodo tambem
-        return ninjaService.atualizarNinjaPorId(id, ninjaModelAtualizado);
+    public NinjaDTO atualizarNinjaPorId(@PathVariable Long id, @RequestBody NinjaDTO ninjaDTOAtualizado) { // Ponho aqui duas variaveis no meu metodo tambem
+        return ninjaService.atualizarNinjaPorId(id, ninjaDTOAtualizado);
     }
 
     // Deletar Ninja (DELETE)
