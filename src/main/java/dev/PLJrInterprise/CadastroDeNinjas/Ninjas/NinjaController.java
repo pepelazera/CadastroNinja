@@ -1,9 +1,12 @@
 package dev.PLJrInterprise.CadastroDeNinjas.Ninjas;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/ninjas")
@@ -16,9 +19,12 @@ public class NinjaController {
     // Para criar esse CRUD, eu preciso criar os meus endpoints com base na sigla, que eh o que fiz logo abaixo
 
     // Adicionar ninja (CREATE)
-    @PostMapping("/criar") // Usado quando queremos criar ou procurar algo. Aqui nos estou criando um novo ninja
-    public NinjaDTO criarNinja(@RequestBody NinjaDTO ninjaDTO) { // Preciso que ele mande no corpo da minha requisicao um json igual ao que eu tenho no localhost
-        return ninjaService.criarNinja(ninjaDTO); // Pega o metodo criado no NinjaService e usa ele nos parametros do ninjaModel
+    @PostMapping("/criar")
+    public ResponseEntity<String> criarNinja(@RequestBody NinjaDTO ninja) {
+        NinjaDTO novoNinja = ninjaService.criarNinja(ninja);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Ninja criado com sucesso: " + novoNinja.getNome() + " -> (ID): " + novoNinja.getId() + ".");
     }
 
     @GetMapping("/listar")
@@ -46,8 +52,16 @@ public class NinjaController {
 
     // Deletar Ninja (DELETE)
     @DeleteMapping("/deletar/{id}")
-    public void deletarNinjaPorId(@PathVariable Long id) { // Annotation que serve para passar esse parametro para minha URL
-        ninjaService.deletarNinjaPorId(id);
+    public ResponseEntity<String> deletarNinjaPorId(@PathVariable Long id) { // Annotation que serve para passar esse parametro para minha URL
+
+        if (ninjaService.listarNinjasPorId(id) != null) {
+            ninjaService.deletarNinjaPorId(id);
+            return ResponseEntity.ok("Ninja (ID): " + id + " -> deletado com sucesso!");
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Ninja (ID): " + id + " -> não encontrado.");
+        }
     }
 
 }
