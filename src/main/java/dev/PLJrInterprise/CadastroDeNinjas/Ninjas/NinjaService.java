@@ -10,11 +10,13 @@ import java.util.stream.Collectors;
 @Service
 public class NinjaService {
 
-    @Autowired
-    private NinjaRepository ninjaRepository;
+    private final NinjaRepository ninjaRepository;
+    private final NinjaMapper ninjaMapper;
 
-    @Autowired
-    private NinjaMapper ninjaMapper;
+    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
+        this.ninjaRepository = ninjaRepository;
+        this.ninjaMapper = ninjaMapper;
+    }
 
     // Lista normalmente
     public List<NinjaDTO> listarNinjas() {
