@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 // O Entity transforma uma classe em uma entidade do DB
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor // Se eu passar um novo parametro, ele adiciona esse novo parametro automaticamente
+@ToString(exclude = "missoes")
 public class NinjaModel { // Numa aplicação Spring, no prefixo eu sempre vou pôr o nome da classe que eu estou trabalhando, e no sufixo, o que eu vou trabalhar
 
     // Como nesse caso vou trabalhar com o modelo da classe, coloquei a palavrinha "model" como sufixo

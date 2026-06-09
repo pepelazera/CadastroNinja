@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.util.List;
 
 @Entity
@@ -13,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor // Cria um construtor vazio sem eu ver. Ele faz essa construção automaticamente
 @AllArgsConstructor // Mesma coisa só que para um construtor com todos os argumentos
 @Data // Cria todos os Getters e Setters automaticamente também
+@ToString
 public class MissoesModel {
 
     /*
