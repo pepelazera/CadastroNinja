@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -24,7 +25,7 @@ public class NinjaController {
         NinjaDTO novoNinja = ninjaService.criarNinja(ninja);
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body("Ninja criado com sucesso: " + novoNinja.getNome() + " -> (ID): " + novoNinja.getId() + ".");
+                .body("Ninja criado com sucesso: " + novoNinja.getNome() + " --> (ID): " + novoNinja.getId() + ".");
     }
 
     @GetMapping("/listar")
@@ -36,32 +37,32 @@ public class NinjaController {
 
     // Mostrar todos os Ninjas por Id (READ)
     @GetMapping("/listar/{id}")
-    public NinjaDTO listarNinjasPorId(@PathVariable Long id) {
-        return ninjaService.listarNinjasPorId(id);
-    }
+    public ResponseEntity<?> listarNinjasPorId(@PathVariable Long id) { // Passo um Generics para poder retornar um json
+          NinjaDTO ninjasPorId = ninjaService.listarNinjasPorId(id);
 
-    // Mostrar Ninja por Id (READ)
-    @GetMapping("/todosId") // Pega uma informacao para mostrar para o usuario
-    public String mostrarTodosOsNinjasId() {
-        return "Mostrar Ninja por Id";
+          if (ninjasPorId != null) {
+              return ResponseEntity.ok(ninjasPorId);
+          }
+          else {
+              return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                      .body("Ninja (id): " + id + " -- não foi encontrado.");
+          }
     }
 
     // Alterar dados dos Ninjas (UPDATE)
     @PutMapping("/atualizar/{id}") // Utilizado para atualizar uma informacao
-    public ResponseEntity<String> atualizarNinjaPorId(@PathVariable Long id, @RequestBody NinjaDTO ninjaDTOAtualizado) { // Ponho aqui duas variaveis no meu metodo tambem
+    public ResponseEntity<?> atualizarNinjaPorId(@PathVariable Long id, @RequestBody NinjaDTO ninjaDTOAtualizado) { // Ponho aqui duas variaveis no meu metodo tambem
+
         NinjaDTO ninjaDTO = ninjaService.atualizarNinjaPorId(id, ninjaDTOAtualizado);
 
-        if (ninjaService.listarNinjasPorId(id) != null) {
-            return ResponseEntity.ok("Ninja (nome): " + ninjaDTO.getNome() + " -->  (id): " + ninjaDTO.getId() + " -- atualizado com sucesso");
-        }
-        else if (ninjaService.listarNinjasPorId(id) == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Ninja (id): " + ninjaDTO.getId() + " -- não foi encontrado");
+        if (ninjaDTO != null) {
+            return ResponseEntity.ok(ninjaDTO);
         }
         else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Não foi possível realizar alterações no Ninja (nome): " + ninjaDTO.getNome() + " --> " + ninjaDTO.getId());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Ninja (id): " + id + " não foi encontrado.");
         }
+
     }
 
     // Deletar Ninja (DELETE)
