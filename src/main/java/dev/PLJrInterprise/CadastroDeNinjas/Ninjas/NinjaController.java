@@ -28,8 +28,10 @@ public class NinjaController {
     }
 
     @GetMapping("/listar")
-    public List<NinjaDTO> listarNinjas() {
-        return ninjaService.listarNinjas();
+    public ResponseEntity<List<NinjaDTO>> listarNinjas() {
+        List<NinjaDTO> ninjas = ninjaService.listarNinjas();
+
+        return ResponseEntity.ok(ninjas);
     }
 
     // Mostrar todos os Ninjas por Id (READ)
@@ -46,8 +48,20 @@ public class NinjaController {
 
     // Alterar dados dos Ninjas (UPDATE)
     @PutMapping("/atualizar/{id}") // Utilizado para atualizar uma informacao
-    public NinjaDTO atualizarNinjaPorId(@PathVariable Long id, @RequestBody NinjaDTO ninjaDTOAtualizado) { // Ponho aqui duas variaveis no meu metodo tambem
-        return ninjaService.atualizarNinjaPorId(id, ninjaDTOAtualizado);
+    public ResponseEntity<String> atualizarNinjaPorId(@PathVariable Long id, @RequestBody NinjaDTO ninjaDTOAtualizado) { // Ponho aqui duas variaveis no meu metodo tambem
+        NinjaDTO ninjaDTO = ninjaService.atualizarNinjaPorId(id, ninjaDTOAtualizado);
+
+        if (ninjaService.listarNinjasPorId(id) != null) {
+            return ResponseEntity.ok("Ninja (nome): " + ninjaDTO.getNome() + " -->  (id): " + ninjaDTO.getId() + " -- atualizado com sucesso");
+        }
+        else if (ninjaService.listarNinjasPorId(id) == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Ninja (id): " + ninjaDTO.getId() + " -- não foi encontrado");
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Não foi possível realizar alterações no Ninja (nome): " + ninjaDTO.getNome() + " --> " + ninjaDTO.getId());
+        }
     }
 
     // Deletar Ninja (DELETE)
